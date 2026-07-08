@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Trinity Koh - Aerospace Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0D1B2A;--navy-mid:#132236;--card:#162438;--card-h:#1C2E47;--pink:#F2A7BB;--pink-d:#c2788e;--steel:#6B8CAE;--white:#E8EDF2;--muted:#8BAFC9;--rule:rgba(107,140,174,0.22);--fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;--fm:'Space Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+#sf{position:fixed;inset:0;z-index:0;pointer-events:none}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(13,27,42,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+.nl{font-family:var(--fm);font-size:0.78rem;letter-spacing:0.14em;color:var(--pink);text-transform:uppercase}
+.nm{display:flex;gap:2.2rem;list-style:none}
+.nm a{font-family:var(--fm);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nm a:hover,.nm a.on{color:var(--pink)}
+/* LAYOUT */
+main{position:relative;z-index:1}
+section{padding:9rem 3rem 6rem;max-width:1100px;margin:0 auto}
+.ey{font-family:var(--fm);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--steel);margin-bottom:2.8rem;display:flex;align-items:center;gap:1rem}
+.ey::after{content:'';flex:1;height:1px;background:var(--rule)}
+/* BUTTONS */
+.btn{font-family:var(--fm);font-size:0.73rem;letter-spacing:0.12em;text-transform:uppercase;padding:.85rem 1.8rem;border:1px solid;cursor:pointer;transition:background .2s,color .2s,border-color .2s;display:inline-block}
+.bp{background:var(--pink);color:var(--navy);border-color:var(--pink)}
+.bp:hover{background:#f9bfce;border-color:#f9bfce}
+.bg{background:transparent;color:var(--muted);border-color:var(--rule)}
+.bg:hover{border-color:var(--pink);color:var(--pink)}
+/* HERO */
+#home{display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:center;min-height:100vh;padding-top:7rem}
+.hk{font-family:var(--fm);font-size:.75rem;letter-spacing:.18em;color:var(--steel);text-transform:uppercase;margin-bottom:1.2rem}
+.hn{font-family:var(--fd);font-size:clamp(2.6rem,6vw,5.2rem);font-weight:700;line-height:1.04;letter-spacing:-.02em;margin-bottom:1rem}
+.hn span{color:var(--pink)}
+.ht{font-family:var(--fd);font-size:clamp(.95rem,1.8vw,1.2rem);font-weight:300;color:var(--muted);max-width:480px;margin-bottom:2.5rem;line-height:1.6}
+.cur{display:inline-block;width:2px;height:1em;background:var(--pink);vertical-align:text-bottom;animation:bl 1.1s step-end infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
+.hcta{display:flex;gap:1rem;flex-wrap:wrap}
+.hpw{position:relative}
+.hpi{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+.agrid2{display:grid;grid-template-columns:1fr 1fr;gap:3rem 4rem;align-items:start}
+.ag-img{width:100%;height:auto;display:block}
+.ag-skills{display:flex;flex-direction:column;justify-content:center;gap:1.4rem}
+.ag-skills h4{font-family:var(--fm);font-size:.68rem;letter-spacing:.15em;color:var(--steel);text-transform:uppercase;margin-bottom:.6rem}
+.ag-pink{color:var(--pink);font-size:.86rem;line-height:1.9;font-family:var(--fb)}
+.ptags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.3rem}
+.ptag{font-family:var(--fm);font-size:.63rem;letter-spacing:.08em;color:var(--pink);padding:.38rem .75rem;border:1px solid var(--pink-d);background:rgba(242,167,187,.05)}
+/* ABOUT */
+#about{min-height:auto;padding-bottom:7rem}
+.ah2{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;line-height:1.2;margin-bottom:1.4rem;letter-spacing:-.01em}
+.ah2 em{font-style:normal;color:var(--pink)}
+.ap{color:var(--muted);font-size:.94rem;margin-bottom:1rem;line-height:1.75}
+.sk{margin-top:2rem}
+.sk h4{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;color:var(--steel);text-transform:uppercase;margin-bottom:.8rem}
+.stags{display:flex;flex-wrap:wrap;gap:.5rem}
+.stag{font-family:var(--fm);font-size:.63rem;letter-spacing:.08em;color:var(--steel);padding:.4rem .75rem;border:1px solid var(--rule)}
+/* PORTFOLIO */
+#portfolio{min-height:auto;padding-bottom:7rem}
+.pi{max-width:100%;color:var(--muted);margin-bottom:3.5rem;font-size:.95rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;justify-content:center}
+.tab{font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--rule);color:var(--steel);background:transparent;cursor:pointer;transition:all .2s}
+.tab:hover{border-color:var(--pink-d);color:var(--pink)}
+.tab.on{border-color:var(--pink);color:var(--pink);background:rgba(242,167,187,.06)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.4rem}
+.card{background:var(--card);border:1px solid var(--rule);cursor:pointer;transition:background .25s,border-color .25s,transform .25s;position:relative;overflow:hidden;display:flex;flex-direction:column;height:100%}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pink),transparent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.card:hover::before{transform:scaleX(1)}
+.card:hover{background:var(--card-h);border-color:rgba(242,167,187,.25);transform:translateY(-3px)}
+.cc{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;flex-shrink:0}
+.cb{padding:1.6rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.ct{font-family:var(--fm);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-d)}
+.cti{font-family:var(--fd);font-size:1.1rem;font-weight:600;line-height:1.25;color:var(--white)}
+.co{font-family:var(--fm);font-size:.64rem;color:var(--steel);letter-spacing:.07em}
+.cd{font-size:.84rem;color:var(--muted);line-height:1.7;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ctags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.ctag{font-family:var(--fm);font-size:.58rem;letter-spacing:.07em;padding:.22rem .5rem;border:1px solid var(--rule);color:var(--steel);text-transform:uppercase}
+.card.t1{grid-column:1/-1}
+.card.t1 .cc{aspect-ratio:21/9}
+.card.t1 .cti{font-size:1.5rem}
+.card.t1 .cd{-webkit-line-clamp:4;font-size:.92rem}
+.card.t2 .cc{aspect-ratio:4/3}
+.card.t2 .cti{font-size:1.22rem}
+.card.t2 .cd{-webkit-line-clamp:4}
+.cf{display:flex;align-items:center;justify-content:space-between;margin-top:.8rem}
+.cl{font-family:var(--fm);font-size:.62rem;color:var(--pink);letter-spacing:.1em;text-transform:uppercase}
+.cm{font-family:var(--fm);font-size:.6rem;color:var(--steel);letter-spacing:.08em}
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,15,26,.97);flex-direction:column}
+#lb.on{display:flex}
+.lbh{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid var(--rule);flex-shrink:0}
+.lbt{font-family:var(--fd);font-size:1.05rem;font-weight:600}
+.lbsub{font-family:var(--fm);font-size:.62rem;color:var(--pink-d);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.25rem}
+.lbx{font-family:var(--fm);font-size:.7rem;color:var(--muted);cursor:pointer;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .8rem;border:1px solid var(--rule);background:none;transition:color .2s,border-color .2s}
+.lbx:hover{color:var(--pink);border-color:var(--pink)}
+.lbb{display:grid;grid-template-columns:1fr 300px;flex:1;overflow:hidden}
+.lbm{display:flex;flex-direction:column;padding:1.5rem;gap:1.2rem;overflow-y:auto}
+.lbmi{width:100%;max-height:52vh;object-fit:contain;background:var(--navy-mid)}
+.lbmv{width:100%;max-height:52vh;background:#000;display:none}
+.lbdesc{color:var(--muted);font-size:.87rem;line-height:1.75}
+.lblinks{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.lblink{font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:var(--pink);border:1px solid var(--pink-d);padding:.28rem .65rem;text-transform:uppercase;transition:background .2s}
+.lblink:hover{background:rgba(242,167,187,.1)}
+.lbs{border-left:1px solid var(--rule);padding:1.2rem;overflow-y:auto;display:flex;flex-direction:column;gap:.8rem}
+.lbsnav{display:flex;gap:.4rem;align-items:center}
+.lbsn{font-family:var(--fm);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem .9rem;border:1px solid var(--rule);color:var(--muted);background:none;cursor:pointer;transition:all .2s}
+.lbsn:hover{border-color:var(--pink);color:var(--pink)}
+.lbsc{font-family:var(--fm);font-size:.62rem;color:var(--steel);padding:.4rem 0}
+.lbsg{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.lbth{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;opacity:.55;transition:opacity .2s;border:1px solid transparent}
+.lbth:hover,.lbth.on{opacity:1;border-color:var(--pink)}
+.lbvth{aspect-ratio:1;background:var(--navy-mid);border:1px solid transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;opacity:.6;transition:opacity .2s}
+.lbvth:hover,.lbvth.on{opacity:1;border-color:var(--pink)}
+/* RESUME */
+#resume{min-height:auto;padding-bottom:7rem}
+.rl{display:grid;grid-template-columns:1fr 290px;gap:4rem;align-items:start}
+.rs{margin-bottom:2.6rem}
+.rs h3{font-family:var(--fd);font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--pink);padding-bottom:.5rem;border-bottom:1px solid var(--rule);margin-bottom:1.1rem}
+.ri{margin-bottom:1.3rem}
+.rih{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.2rem}
+.rit{font-family:var(--fd);font-size:.94rem;font-weight:600}
+.rid{font-family:var(--fm);font-size:.62rem;color:var(--steel);letter-spacing:.07em;white-space:nowrap}
+.rio{font-size:.8rem;color:var(--pink-d);font-style:italic;margin-bottom:.3rem}
+.rib{list-style:none}
+.rib li{font-size:.8rem;color:var(--muted);padding-left:1rem;position:relative;margin-bottom:.22rem;line-height:1.6}
+.rib li::before{content:'--';position:absolute;left:0;color:var(--pink-d);font-size:.7rem}
+.dc{background:var(--card);border:1px solid var(--rule);padding:2rem;text-align:center}
+.dci{width:44px;height:44px;border:1px solid var(--pink-d);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;color:var(--pink);font-size:1.1rem;background:rgba(242,167,187,.06)}
+.dc h3{font-family:var(--fd);font-size:1rem;font-weight:600;margin-bottom:.4rem}
+.dc p{font-size:.8rem;color:var(--muted);margin-bottom:1.4rem}
+.dcm{margin-top:1.1rem;font-family:var(--fm);font-size:.6rem;color:var(--steel);letter-spacing:.08em;line-height:2}
+.dcm a{text-decoration:none;transition:color .2s}
+.dcm a:hover{color:var(--pink)}
+.tcar{display:flex;align-items:center;gap:.8rem}
+.tarrow{flex-shrink:0;width:32px;height:32px;border:1px solid var(--rule);background:none;color:var(--steel);cursor:pointer;border-radius:50%;font-size:.9rem;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.tarrow:hover{border-color:var(--pink);color:var(--pink)}
+.tbody{flex:1;min-height:118px;display:flex;flex-direction:column;justify-content:center}
+.dc p.tquote{font-size:.85rem;color:var(--pink);font-style:italic;line-height:1.7;transition:opacity .25s}
+.tsource{font-family:var(--fm);font-size:.6rem;color:var(--pink-d);letter-spacing:.08em;text-transform:uppercase;margin-top:.7rem}
+/* CONTACT */
+#contact{min-height:auto;padding-bottom:7rem}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.cl2 h2{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;line-height:1.2;margin-bottom:1.2rem;letter-spacing:-.01em}
+.cl2 h2 span{color:var(--pink)}
+.cl2 p{color:var(--muted);font-size:.93rem;margin-bottom:2rem;line-height:1.75}
+.clinks{display:flex;flex-direction:column;gap:.8rem}
+.clink{display:flex;align-items:center;gap:1rem;padding:.9rem 1.1rem;background:var(--card);border:1px solid var(--rule);transition:border-color .2s,background .2s}
+.clink:hover{border-color:var(--pink-d);background:var(--card-h)}
+.clico{width:34px;height:34px;background:rgba(242,167,187,.08);border:1px solid var(--pink-d);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:.85rem;flex-shrink:0}
+.cll{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;color:var(--steel);text-transform:uppercase;display:block}
+.clv{font-size:.88rem;color:var(--white)}
+.cf2{display:flex;flex-direction:column;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{font-family:var(--fm);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
+.fg input,.fg textarea{background:var(--card);border:1px solid var(--rule);color:var(--white);font-family:var(--fb);font-size:.88rem;padding:.8rem .95rem;outline:none;transition:border-color .2s;resize:none;width:100%}
+.fg input:focus,.fg textarea:focus{border-color:var(--pink-d)}
+.fg textarea{min-height:110px}
+#fs{font-family:var(--fm);font-size:.7rem;color:var(--pink);letter-spacing:.08em;display:none}
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--rule);padding:2rem 3rem;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.fc{font-family:var(--fm);font-size:.65rem;color:var(--steel);letter-spacing:.08em}
+.fc span{color:var(--pink)}
+.fct{display:flex;gap:2rem}
+.fct a{font-family:var(--fm);font-size:.62rem;color:var(--steel);letter-spacing:.08em;transition:color .2s}
+.fct a:hover{color:var(--pink)}
+.fct-label{color:var(--pink-d);font-size:.58rem;display:block;letter-spacing:.12em;text-transform:uppercase}
+/* REVEAL - progressive enhancement */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rv.vi{opacity:1;transform:none}
+/* RESPONSIVE */
+@media(max-width:860px){
+  nav{padding:1rem 1.4rem}
+  section{padding:7rem 1.4rem 4rem}
+  #home{grid-template-columns:1fr;padding-top:6rem}
+  .hpw{order:-1;max-width:260px;margin:0 auto}
+  .agrid2,.rl,.cg{grid-template-columns:1fr}
+  .lbb{grid-template-columns:1fr}
+  .lbs{border-left:none;border-top:1px solid var(--rule)}
+  .dc{position:static}
+  footer{flex-direction:column;text-align:center}
+}
+@media(max-width:520px){.nm{display:none}.hn{font-size:2.4rem}}
+@media(prefers-reduced-motion:reduce){*,.cur{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="sf"></canvas>
+<nav>
+  <span class="nl">Trinity Koh</span>
+  <ul class="nm">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<main>
+<section id="home">
+  <div class="rv">
+    <p class="hk">Aerospace Engineering &middot; Republic Polytechnic &middot; Singapore</p>
+    <h1 class="hn">Koh Wan Leng<br><span>Trinity</span></h1>
+    <p class="ht">Final-year Aerospace Engineering student at Republic Polytechnic, working on satellites, drones, and systems that actually launch.<span class="cur"></span></p>
+    <div class="hcta">
+      <a href="#portfolio" class="btn bp">View Projects</a>
+      <a href="#contact" class="btn bg">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hpw rv">
+    <img id="hero-img" class="hpi" alt="Trinity Koh"/>
+  </div>
+</section>
+<section id="about">
+  <p class="ey">About</p>
+  <div class="agrid2">
+    <div class="rv ag-photo"><img id="about-img" class="ag-img" alt="Trinity Koh"/></div>
+    <div class="rv ag-text">
+      <h2 class="ah2">Aerospace by training.<br><em>Builder</em> by nature.</h2>
+      <p class="ap">I am a final-year Aerospace Engineering student at Republic Polytechnic, drawn to aircraft structures, aerodynamics, and simulation-based design, with long-term aspirations in engineering R&amp;D.</p>
+      <p class="ap">My projects span CubeSat payload systems for MangoSat (a 3U satellite built for multispectral Earth observation), a Pixhawk-based MRO inspection drone, and flight training on the Diamond DA-40 at SYFC. Whether it is orbital mission analysis in NASA GMAT, satellite downlink work in GNURadio, or designing the MangoSat mascot and BFC 289 course patch, I bring the same attention to detail to every layer of a project.</p>
+      <p class="ap">Outside engineering, I serve as Vice President of the IPSSC, the Institute of Physics Singapore Student Chapter, as the only pre-university representative in a national university-led body spanning NUS, NTU, and SUTD.</p>
+    </div>
+    <div class="rv ag-skills">
+      <h4>Technical Skills</h4>
+      <div class="ptags">
+        <span class="ptag">Aerodynamic Analysis</span><span class="ptag">NASA GMAT</span>
+        <span class="ptag">KiCad PCB Design</span><span class="ptag">GNURadio &amp; SDR</span>
+        <span class="ptag">Raspberry Pi CM4</span><span class="ptag">Autodesk Fusion 360</span>
+        <span class="ptag">Arduino &amp; Pixhawk</span><span class="ptag">DA-40 Flight Training</span>
+        <span class="ptag">Blynk IoT Platform</span><span class="ptag">GMSK Modulation</span>
+      </div>
+      <h4>Relevant Modules</h4>
+      <div class="ptags">
+        <span class="ptag">Aerodynamics &amp; Propulsion</span><span class="ptag">Thermofluids</span>
+        <span class="ptag">Principles of Mechanics</span><span class="ptag">Engineering Mathematics</span>
+        <span class="ptag">Engineering Materials</span><span class="ptag">Aircraft Inspection</span>
+        <span class="ptag">Aviation Maintenance Practices</span><span class="ptag">Digital Techniques &amp; Electronic Instrument Systems</span>
+        <span class="ptag">Fundamentals of Industrial IoT</span><span class="ptag">Unmanned Aircraft Operations</span>
+        <span class="ptag">Programming and Data Analysis</span>
+      </div>
+    </div>
+    <div class="rv ag-photo"><img id="about-img2" class="ag-img" alt="Trinity Koh"/></div>
+  </div>
+</section>
+<section id="portfolio">
+  <p class="ey">Portfolio</p>
+  <p class="pi rv">Projects spanning satellite systems, autonomous drones, physics outreach, flight operations, and community leadership, each one a step closer to orbit.</p>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-cat="all">All</button>
+    <button class="tab" data-cat="aerospace">Aerospace &amp; Space</button>
+    <button class="tab" data-cat="leadership">Leadership</button>
+    <button class="tab" data-cat="enrichment">Enrichment</button>
+    <button class="tab" data-cat="community">Community</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+</main>
+<div id="lb">
+  <div class="lbh">
+    <div>
+      <div class="lbsub" id="lb-type"></div>
+      <div class="lbt" id="lb-title"></div>
+    </div>
+    <button class="lbx" onclick="closeLB()">&#x2715; Close</button>
+  </div>
+  <div class="lbb">
+    <div class="lbm">
+      <img class="lbmi" id="lb-img" alt=""/>
+      <video class="lbmv" id="lb-vid" controls playsinline></video>
+      <div>
+        <p class="lbdesc" id="lb-desc"></p>
+        <div class="lblinks" id="lb-links"></div>
+      </div>
+    </div>
+    <div class="lbs">
+      <div style="font-family:var(--fm);font-size:.65rem;color:var(--steel);letter-spacing:.1em;text-transform:uppercase">Gallery</div>
+      <div class="lbsnav">
+        <button class="lbsn" onclick="lbNav(-1)">&#8592; Prev</button>
+        <button class="lbsn" onclick="lbNav(1)">Next &#8594;</button>
+        <span class="lbsc" id="lb-count"></span>
+      </div>
+      <div class="lbsg" id="lb-thumbs"></div>
+    </div>
+  </div>
+</div>
+<main>
+<section id="resume">
+  <p class="ey">Resume</p>
+  <div class="rl">
+    <div>
+      <div class="rs rv">
+        <h3>Education</h3>
+        <div class="ri">
+          <div class="rih"><span class="rit">Diploma in Aerospace Engineering</span><span class="rid">2023 - 2027</span></div>
+          <p class="rio">Republic Polytechnic</p>
+          <ul class="rib"><li>Relevant Modules: Aerodynamics &amp; Propulsion, Thermofluids, Principles of Mechanics, Engineering Mathematics, Engineering Materials, Aircraft Inspection, Aviation Maintenance Practices, Digital Techniques &amp; Electronic Instrument Systems, Fundamentals of Industrial IoT, Unmanned Aircraft Operations, Programming and Data Analysis</li></ul>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">GCE O-Level Certificate</span><span class="rid">2019 - 2022</span></div>
+          <p class="rio">Evergreen Secondary School &middot; 6 Credits</p>
+        </div>
+      </div>
+      <div class="rs rv">
+        <h3>Experience</h3>
+        <div class="ri">
+          <div class="rih"><span class="rit">Space Faculty</span><span class="rid">2024 - 2025</span></div>
+          <p class="rio">Intern &middot; Freelance Instructor, SpaceBuds</p>
+          <ul class="rib">
+            <li>Facilitated ISP Phase 1: full satellite build from mechanical assembly through onboard imaging.</li>
+            <li>Designed the SpaceBuds Question Board; led publicity for WRO x Aramco partnership.</li>
+            <li>Researched legal and regulatory requirements for a biological seed-to-space launch.</li>
+          </ul>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">Swimwerks Asia Pte. Ltd.</span><span class="rid">2022 - 2025</span></div>
+          <p class="rio">Swimming Coach &amp; Lifeguard &middot; AustSwim Licensed</p>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">Kumon Asia &amp; Oceania Pte. Ltd.</span><span class="rid">2018 - 2019</span></div>
+          <p class="rio">Mathematics &amp; English Instructor</p>
+        </div>
+      </div>
+      <div class="rs rv">
+        <h3>Key Projects &amp; Leadership</h3>
+        <div class="ri">
+          <div class="rih"><span class="rit">FYP: Cloud IoT-Enabled MRO Drone</span><span class="rid">Apr 2026 - Present</span></div>
+          <p class="rio">Republic Polytechnic &middot; Final Year Project</p>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">NASA Mars Food Design Challenge</span><span class="rid">May 2026 - Present</span></div>
+          <p class="rio">SGAC Space Exploration Project Group &middot; Project Lead</p>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">MangoSat: ISP Phase 2</span><span class="rid">2024 - 2026</span></div>
+          <p class="rio">Space Faculty x NuSpace &middot; Payload Team &amp; Marketing</p>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">IPSSC Vice President</span><span class="rid">2024 - Present</span></div>
+          <p class="rio">Institute of Physics Singapore Student Chapter &middot; AY25/26</p>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">SYFC BFC 289, Course In Charge</span><span class="rid">2024 - 2025</span></div>
+          <p class="rio">Singapore Youth Flying Club &middot; Diamond DA-40 Phase 1</p>
+        </div>
+        <div class="ri">
+          <div class="rih"><span class="rit">DSTA BrainHack 2025: CubeSat Challenge</span><span class="rid">Jun 2025</span></div>
+          <p class="rio">Defence Science and Technology Agency</p>
+        </div>
+      </div>
+      <div class="rs rv">
+        <h3>Credentials &amp; Awards</h3>
+        <div class="ri">
+          <ul class="rib">
+            <li>CAAS Class 2 Medical Certificate, SYFC Pilot Training (2024)</li>
+            <li>AustSwim Teacher Licence (2022)</li>
+            <li>Level 1 Peer Supporter, Republic Polytechnic (2024)</li>
+            <li>First Aid, CPR &amp; AED Certified</li>
+            <li>National Math Olympiad of Singapore (NMOS), Bronze (2017)</li>
+            <li>44th National Lifesaving Championship, School Representative (2024)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="dc">
+        <div class="dci">&#8595;</div>
+        <h3>Full Resume</h3>
+        <p>This page shows a summary. Download the complete version with all experience, projects, and credentials.</p>
+        <a id="dl-btn" href="#" download="Koh_Wan_Leng_Trinity_Resume.pdf" class="btn bp" style="width:100%;text-align:center;display:block">Download Resume (PDF)</a>
+        <div class="dcm">
+          <a href="mailto:trinitykwl@gmail.com">trinitykwl@gmail.com</a><br>
+          <a href="tel:+6588048197">+65 8804 8197</a><br>
+          <a href="https://linkedin.com/in/trinitykoh" target="_blank" rel="noopener">linkedin.com/in/trinitykoh</a>
+        </div>
+      </div>
+      <div class="dc" style="margin-top:1.5rem;text-align:center">
+        <h3 style="margin-bottom:1.3rem">Testimonials &amp; Certificates</h3>
+        <div class="tcar">
+          <button class="tarrow" onclick="testiNav(-1)" aria-label="Previous testimonial">&#8592;</button>
+          <div class="tbody">
+            <p class="tquote" id="t-quote"></p>
+            <p class="tsource" id="t-source"></p>
+          </div>
+          <button class="tarrow" onclick="testiNav(1)" aria-label="Next testimonial">&#8594;</button>
+        </div>
+        <p style="font-size:.76rem;color:var(--steel);text-align:center;border-top:1px solid var(--rule);padding-top:.9rem;margin-top:1.2rem">Full testimonials and certificates <a href="#contact" style="color:var(--pink);text-decoration:none">available upon request &darr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <p class="ey">Contact</p>
+  <div class="cg">
+    <div class="rv">
+      <h2 class="cl2" style="font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;line-height:1.2;margin-bottom:1.2rem;letter-spacing:-.01em">Let's build something<br><span style="color:var(--pink)">that reaches orbit.</span></h2>
+      <p style="color:var(--muted);font-size:.93rem;margin-bottom:2rem;line-height:1.75">Open to aerospace engineering internships, collaborative research, and STEM outreach. Based in Singapore, happy to connect internationally.</p>
+      <div class="clinks">
+        <a href="mailto:trinitykwl@gmail.com" class="clink">
+          <span class="clico">&#x2709;</span>
+          <span><span class="cll">Email</span><span class="clv">trinitykwl@gmail.com</span></span>
+        </a>
+        <a href="https://linkedin.com/in/trinitykoh" target="_blank" rel="noopener" class="clink">
+          <span class="clico">in</span>
+          <span><span class="cll">LinkedIn</span><span class="clv">linkedin.com/in/trinitykoh</span></span>
+        </a>
+        <a href="tel:+6588048197" class="clink">
+          <span class="clico">&#x260E;</span>
+          <span><span class="cll">Phone</span><span class="clv">+65 8804 8197</span></span>
+        </a>
+      </div>
+      <div class="cf2" style="margin-top:2rem">
+        <div class="fg"><label for="cn">Name</label><input type="text" id="cn" placeholder="Your name"/></div>
+        <div class="fg"><label for="ce">Email</label><input type="email" id="ce" placeholder="your@email.com"/></div>
+        <div class="fg"><label for="cs">Subject</label><input type="text" id="cs" placeholder="Internship, collaboration, etc."/></div>
+        <div class="fg"><label for="cm">Message</label><textarea id="cm" placeholder="Tell me about the opportunity..."></textarea></div>
+        <button class="btn bp" onclick="sendMsg()" style="align-self:flex-start">Send Message</button>
+        <p id="fs"></p>
+      </div>
+    </div>
+    <div class="rv" style="display:flex;align-items:center;justify-content:center">
+      <img id="contact-img" class="ag-img" alt="Trinity Koh" style="max-width:260px;height:auto"/>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <p class="fc">&copy; 2026 <span>Koh Wan Leng Trinity</span> &middot; Aerospace Engineering &middot; Singapore</p>
+  <div class="fct">
+    <a href="tel:+6588048197"><span class="fct-label">Call</span>+65 8804 8197</a>
+    <a href="mailto:trinitykwl@gmail.com"><span class="fct-label">Write</span>trinitykwl@gmail.com</a>
+  </div>
+</footer>
+<script>
+document.documentElement.classList.add('js');
+</script>
+<script>
+const IMG={"covers": {"me4": "assets/images/img-1.jpg", "me1": "assets/images/img-2.jpg", "mangosat": "assets/images/img-3.jpg", "ipssc": "assets/images/img-4.jpg", "syfc": "assets/images/img-5.jpg", "brainhack": "assets/images/img-6.jpg", "sfintern": "assets/images/img-7.jpg", "sfphase1": "assets/images/img-8.jpg", "bangkok": "assets/images/img-9.jpg", "council": "assets/images/img-10.jpg", "seg": "assets/images/img-11.jpg", "astro": "assets/images/img-12.jpg", "hygm": "assets/images/img-13.jpg", "netball": "assets/images/img-14.jpg", "techignite": "assets/images/img-15.jpg", "arttech": "assets/images/img-16.jpg", "summer": "assets/images/img-17.jpg", "swimwerks": "assets/images/img-18.jpg", "me2": "assets/images/img-19.jpg", "me3": "assets/images/img-20.jpg"}, "galleries": {"mangosat": ["assets/images/img-21.jpg", "assets/images/img-22.jpg", "assets/images/img-23.jpg", "assets/images/img-24.jpg", "assets/images/img-25.jpg", "assets/images/img-26.jpg", "assets/images/img-27.jpg", "assets/images/img-28.jpg", "assets/images/img-29.jpg", "assets/images/img-30.jpg", "assets/images/img-31.jpg", "assets/images/img-32.jpg", "assets/images/img-33.jpg", "assets/images/img-34.jpg", "assets/images/img-35.jpg", "assets/images/img-36.jpg"], "ipssc": ["assets/images/img-37.jpg", "assets/images/img-38.jpg", "assets/images/img-39.jpg", "assets/images/img-40.jpg", "assets/images/img-41.jpg"], "syfc": ["assets/images/img-42.jpg", "assets/images/img-43.jpg", "assets/images/img-44.jpg"], "brainhack": ["assets/images/img-45.jpg", "assets/images/img-46.jpg", "assets/images/img-47.jpg"], "sfintern": ["assets/images/img-48.jpg", "assets/images/img-49.jpg"], "sfphase1": ["assets/images/img-50.jpg", "assets/images/img-51.jpg", "assets/images/img-52.jpg", "assets/images/img-53.jpg", "assets/images/img-54.jpg", "assets/images/img-55.jpg", "assets/images/img-56.jpg", "assets/images/img-57.jpg", "assets/images/img-58.jpg"], "bangkok": ["assets/images/img-59.jpg", "assets/images/img-60.jpg", "assets/images/img-61.jpg", "assets/images/img-62.jpg", "assets/images/img-63.jpg", "assets/images/img-64.jpg", "assets/images/img-65.jpg", "assets/images/img-66.jpg"], "seg": ["assets/images/img-67.jpg", "assets/images/img-68.jpg", "assets/images/img-69.jpg", "assets/images/img-70.jpg"], "astro": ["assets/images/img-71.jpg", "assets/images/img-72.jpg", "assets/images/img-73.jpg", "assets/images/img-74.jpg", "assets/images/img-75.jpg", "assets/images/img-76.jpg", "assets/images/img-77.jpg", "assets/images/img-78.jpg", "assets/images/img-79.jpg"], "hygm": ["assets/images/img-80.jpg", "assets/images/img-81.jpg", "assets/images/img-82.jpg", "assets/images/img-83.jpg", "assets/images/img-84.jpg", "assets/images/img-85.jpg"], "netball": ["assets/images/img-86.jpg", "assets/images/img-87.jpg", "assets/images/img-88.jpg"], "techignite": ["assets/images/img-89.jpg"], "arttech": ["assets/images/img-90.jpg", "assets/images/img-91.jpg", "assets/images/img-92.jpg", "assets/images/img-93.jpg", "assets/images/img-94.jpg", "assets/images/img-95.jpg", "assets/images/img-96.jpg"], "summer": ["assets/images/img-97.jpg"], "swimwerks": ["assets/images/img-98.jpg", "assets/images/img-99.jpg", "assets/images/img-100.jpg", "assets/images/img-101.jpg"]}};
+const VID={"mangosat": "assets/videos/vid-1.mp4", "syfc": "assets/videos/vid-2.mp4", "sfphase1": "assets/videos/vid-3.mp4", "sfintern": "assets/videos/vid-4.mp4", "techignite": "assets/videos/vid-5.mp4", "summer1": "assets/videos/vid-6.mp4", "summer3": "assets/videos/vid-7.mp4", "netball1": "assets/videos/vid-8.mp4", "netball5": "assets/videos/vid-9.mp4", "bangkok": "assets/videos/vid-10.mp4", "fyp": "assets/videos/vid-11.mp4"};
+const PDF_URI="assets/documents/resume-1.pdf";
+
+const VID_GALLERY={mangosat:['mangosat'],syfc:['syfc'],sfphase1:['sfphase1'],sfintern:['sfintern'],techignite:['techignite'],summer:['summer1','summer3'],netball:['netball1','netball5'],bangkok:['bangkok'],fyp:['fyp']};
+const TESTIMONIALS=[
+  {quote:'Trinity is a diligent and humble student, who can think in depth and with perspective. She has an inquiring mind and always thinks critically in a constructive manner.',source:'Evergreen Secondary School'},
+  {quote:'She is quick-thinking, and shows calmness in face of unexpected circumstances, making her an indispensable player to the team.',source:'Woodgrove Primary School'},
+];
+const PROJECTS=[
+{id:'mangosat',cat:'aerospace',tier:1,type:'CubeSat \xb7 Earth Observation',title:'MangoSat: 3U CubeSat for Multispectral Earth Observation',org:'Space Faculty x NuSpace \xb7 ISP Phase 2 \xb7 2024-2026',desc:'MangoSat is a 3U CubeSat (~4 kg) designed to monitor vegetation health (NDVI) across Singapore\'s forests, southern islands, and shipping routes. As part of the Payload Team and Marketing Crew, I worked on the custom multispectral camera, Payload Adapter Board (KiCad), Raspberry Pi CM4 integration, and GNURadio/SDR satellite downlink. I also ran orbital and mission analysis using NASA GMAT, presented the mission at SSEF and the Singapore Space Summit, and designed the MangoSat mascot and Instagram Reels for the marketing crew.',tags:['KiCad PCB','Raspberry Pi CM4','GNURadio SDR','NASA GMAT','NDVI','Design'],cover:'mangosat',gallery:'mangosat',links:[{label:'Day in the Life Reel',url:'https://www.instagram.com/reel/DJoChykxISt/'},{label:'MangoSat CDR Reel',url:'https://www.instagram.com/reel/DIii-x1xJ3M/'}]},
+{id:'fyp',cat:'aerospace',tier:2,type:'Final Year Project \xb7 Autonomous Systems',title:'Cloud IoT-Enabled MRO Inspection Drone',org:'Republic Polytechnic \xb7 Apr 2026-Present',desc:'My final year project at Republic Polytechnic. I am building a Pixhawk-based drone for MRO inspection with full cloud IoT connectivity, writing onboard firmware and designing the IoT data pipeline to a cloud monitoring dashboard.',tags:['Pixhawk','Firmware','Cloud IoT','MRO','Blynk'],cover:null,gallery:null,links:[]},
+{id:'nasa',cat:'aerospace',tier:0,type:'NASA Challenge \xb7 Project Lead',title:'NASA Mars Food Design Challenge',org:'SGAC Space Exploration Project Group \xb7 May 2026-Present',desc:'I am leading a roughly 50-person, multidisciplinary, multi-country team under the Space Generation Advisory Council, designing food systems for crewed Mars missions. The team spans different educational levels and nationalities, coordinating across time zones toward a NASA challenge submission.',tags:['NASA Challenge','SGAC','Project Lead','Mars Mission'],cover:null,gallery:null,links:[]},
+{id:'brainhack',cat:'aerospace',tier:0,type:'Hackathon \xb7 Satellite Systems',title:'DSTA BrainHack 2025: CubeSat Challenge',org:'Defence Science and Technology Agency \xb7 June 2025',desc:'Our team built a functional satellite prototype under hackathon time constraints over two days, applying ISP programme knowledge under real pressure. The photo captures our team with Dr. Sian "Leo" Proctor, a NASA-certified astronaut who flew to space on the Inspiration4 mission in 2021 and gave a talk at BrainHack 2025.',tags:['DSTA','CubeSat Prototype','Rapid Prototyping'],cover:'brainhack',gallery:'brainhack',links:[]},
+{id:'ipssc',cat:'leadership',tier:2,type:'National Leadership \xb7 Physics Outreach',title:'IPSSC: Vice President and PLANCKS 2026',org:'Institute of Physics Singapore Student Chapter \xb7 2024-Present',desc:'I am the VP of IPSSC\'s 28-member national committee, and the only pre-university student in a body that otherwise spans NUS, NTU, and SUTD. I organised PLANCKS 2026, a two-day physics competition at NTU with 13 teams and guest researchers from CQT, ST Engineering, Atomionics, and BiQut. Previously I led the publicity team for PLANCKS 2025, and ran Street Astronomy outreach at Wisma Geylang Serai.',tags:['National Leadership','Event Management','PLANCKS 2026','Science Outreach'],cover:'ipssc',gallery:'ipssc',links:[{label:"EXCO '24 Intro",url:'https://www.instagram.com/p/DC1JwI9TKcO/'},{label:'PLANCKS 2024 Recap',url:'https://www.instagram.com/reel/DFiDOf1zORy/'},{label:"EXCO '25 Intro",url:'https://www.instagram.com/p/DS93uMQE32Z/'},{label:'PLANCKS 2025 Questions',url:'https://www.instagram.com/stories/highlights/18027200591625454/'},{label:'PLANCKS 2026 Story',url:'https://www.instagram.com/stories/highlights/18091443728078321/'}]},
+{id:'syfc',cat:'aerospace',tier:0,type:'Diamond DA-40 \xb7 Flight Training',title:'SYFC Basic Flying Course, Course In Charge',org:'Singapore Youth Flying Club \xb7 BFC 289 \xb7 2024-2025',desc:'I completed Basic Flying Course Phase 1 on the Diamond DA-40 under CAAS-regulated training. As Course In Charge, I was the main link between SYFC flight operations staff and the trainee cohort, handling attendance, scheduling, and coordination. I also designed BFC 289\'s official course patch from the initial digital artwork to the final embroidered version.',tags:['Diamond DA-40','CAAS Regulated','Course In Charge','Graphic Design'],cover:'syfc',gallery:'syfc',links:[]},
+{id:'sfintern',cat:'aerospace',tier:0,type:'Internship \xb7 Space Education',title:'Space Faculty Internship',org:'Space Faculty \xb7 Mar-Apr 2024',desc:'During my internship at Space Faculty, I taught space-themed lessons for SpaceBuds, shadowing senior trainers to learn child-friendly teaching techniques. I designed the SpaceBuds Question Board, led publicity for the WRO x Aramco collaboration, and researched the regulatory process for sending biological seed samples to space.',tags:['Space Education','Publicity','Research','Seed-to-Space'],cover:'sfintern',gallery:'sfintern',links:[]},
+{id:'sfphase1',cat:'aerospace',tier:0,type:'Programme \xb7 Satellite Build',title:'ISP Phase 1: Satellite Build from Scratch',org:'Space Faculty \xb7 Integrated Space Programme Phase 1',desc:'In ISP Phase 1, we built a fully functional (non-flight-rated) satellite from scratch over one week, from mechanical assembly through onboard imaging. This was a hands-on introduction to what goes into a real satellite and laid the foundation for Phase 2 with MangoSat.',tags:['Satellite Assembly','Onboard Imaging','CoolTerm','Space Faculty'],cover:'sfphase1',gallery:'sfphase1',links:[]},
+{id:'bangkok',cat:'aerospace',tier:0,type:'Overseas Learning Journey',title:'School of Engineering OLJ, Bangkok, Thailand',org:'Republic Polytechnic \xb7 September 2024',desc:'A week-long overseas learning journey to Bangkok with the School of Engineering. We visited MRO and aerospace facilities including airport line maintenance operations and aviation component overhaul shops. We also visited the Grand Palace and Royal Navy Museum.',tags:['MRO Facility Visit','Aviation Industry','Overseas Learning'],cover:'bangkok',gallery:'bangkok',links:[]},
+{id:'council',cat:'leadership',tier:0,type:'Co-Curricular \xb7 Student Leadership',title:'Student Council, Branding Sub-Committee',org:'Republic Polytechnic \xb7 2023-2024',desc:'As part of the Student Council Branding Sub-Committee, I created Instagram and TikTok content ranging from mid-semester motivation posts to festive campaigns. I also served as Student Ambassador during RP Open House.',tags:['Instagram','TikTok','Student Ambassador','Content Creation'],cover:'council',gallery:null,links:[{label:'Instagram MSA Post',url:'https://www.instagram.com/'},{label:'Instagram Christmas Post',url:'https://www.instagram.com/'},{label:'TikTok Christmas Post',url:'https://www.tiktok.com/'},{label:'TikTok Open House',url:'https://www.tiktok.com/'}]},
+{id:'seg',cat:'leadership',tier:0,type:'Co-Curricular \xb7 Engineering Club',title:'School of Engineering (SEG) Club',org:'Republic Polytechnic \xb7 2023-2024',desc:'In SEG Club, I took on the role of Publicity In Charge for SEG Bonding Day, planning and promoting the event from scratch. I also served as First Aider at the Student Leadership Preparatory Camp and represented SEG at the CCA Fiesta booth.',tags:['Publicity','Event Planning','First Aid','CCA'],cover:'seg',gallery:'seg',links:[]},
+{id:'astro',cat:'enrichment',tier:0,type:'Co-Curricular \xb7 Astronomy',title:'RP Astronomy Club and Galaxy Astronomy Club',org:'Republic Polytechnic \xb7 Woodlands Galaxy CC \xb7 2023-2024',desc:'Joining both RP Astronomy Club and the Galaxy Astronomy Club at Woodlands Community Club opened up a lot of hands-on stargazing. Highlights included the Lyrids Star Party, camps at Desaru and Pulau Ubin, and operating telescopes in genuinely dark skies.',tags:['Stargazing','Telescope Operation','Lyrids Star Party','Pulau Ubin'],cover:'astro',gallery:'astro',links:[]},
+{id:'techignite',cat:'enrichment',tier:0,type:'External Programme \xb7 Engineering',title:'NTU Techignite 2024',org:'Nanyang Technological University \xb7 January 2024',desc:'At NTU Techignite, we did hands-on engineering builds: a water irrigation system, a smart street lamp, and a hydraulic judo robot. A good mix of practical engineering and networking with seniors and like-minded students.',tags:['NTU','Hands-on Engineering','Robotics','Hydraulics'],cover:'techignite',gallery:'techignite',links:[]},
+{id:'arttech',cat:'enrichment',tier:0,type:'External Programme \xb7 Art and Technology',title:'NUS CDE Art x Tech Workshop',org:'NUS College of Design and Engineering \xb7 December 2023',desc:'At the NUS Art x Tech Workshop, we built an Arduino-driven kinetic art installation, a collaboration between coding and physical making. Engineering and creativity are not that different: both start with an idea of how something should move.',tags:['Arduino','Kinetic Art','NUS','Interdisciplinary'],cover:'arttech',gallery:'arttech',links:[]},
+{id:'summer',cat:'enrichment',tier:0,type:'External Programme \xb7 Engineering',title:'NUS CDE Summer Camp',org:'NUS College of Design and Engineering \xb7 June 2023',desc:'At NUS CDE Summer Camp, our team designed and built a "Cool House", using convection to reduce internal temperature and experimenting with frictional energy harvesting. My first real taste of university-style engineering projects under constraints.',tags:['NUS','Convection Cooling','Energy Harvesting','Design Challenge'],cover:'summer',gallery:'summer',links:[]},
+{id:'hygm',cat:'community',tier:0,type:'Volunteering \xb7 Senior Outreach',title:'Hey You Got Mail (HYGM)',org:'Non-profit Volunteer \xb7 2021-2023 \xb7 60+ hours',desc:'HYGM is a non-profit that brings joy to seniors through handmade cards and care packages. Over two years and 60+ volunteer hours, I helped make and distribute personalised cards, led a Crochet Session, and worked on sketchbook creations.',tags:['Volunteering','Senior Outreach','Crochet','Community'],cover:'hygm',gallery:'hygm',links:[]},
+{id:'netball',cat:'community',tier:0,type:'Sports \xb7 10 Years',title:'Netball',org:'2011-2022 \xb7 10 years from Primary 1',desc:'I played competitive netball for ten years, starting from Primary 1 all the way through secondary school. At Evergreen Secondary, I represented the school in C and B Division Girls competitions at the North Zone, and served as Publicity Manager in 2021.',tags:['Netball','School Representative','North Zone','Publicity Manager'],cover:'netball',gallery:'netball',links:[]},
+{id:'swimwerks',cat:'community',tier:0,type:'Swimming Coach \xb7 Lifeguard',title:'Swimwerks Asia: Swimming Coach and Lifeguard',org:'AustSwim Licensed \xb7 2022-2024',desc:'At Swimwerks Asia, I worked as both an AustSwim-licensed swimming coach and a lifeguard. As a coach, I worked with children across different ability levels. As a lifeguard, I handled pool surveillance and CPR/AED/First Aid response. This job taught me to stay calm and focused under pressure, and to inspire the next generation of competitive swimmers.',tags:['AustSwim','Swimming Coach','Lifeguard','CPR & First Aid'],cover:'swimwerks',gallery:'swimwerks',links:[]},
+];
+
+(function(){var c=document.getElementById('sf'),ctx=c.getContext('2d'),stars=[];function resize(){c.width=innerWidth;c.height=innerHeight;}function init(){resize();stars=Array.from({length:160},function(){return{x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.1+.2,a:Math.random(),sp:Math.random()*.003+.001,d:(Math.random()-.5)*.05};});}function draw(){ctx.clearRect(0,0,c.width,c.height);stars.forEach(function(s){s.a+=s.sp;s.x+=s.d;if(s.x<0)s.x=c.width;if(s.x>c.width)s.x=0;var al=(Math.sin(s.a)*.5+.5)*.7+.05;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(232,237,242,'+al+')';ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',function(){resize();});init();draw();})();
+
+var heroImg=document.getElementById('hero-img');
+var aboutImg=document.getElementById('about-img');
+var aboutImg2=document.getElementById('about-img2');
+var contactImg=document.getElementById('contact-img');
+if(heroImg&&IMG.covers.me4)heroImg.src=IMG.covers.me4;
+if(aboutImg&&IMG.covers.me1)aboutImg.src=IMG.covers.me1;
+if(aboutImg2&&IMG.covers.me3)aboutImg2.src=IMG.covers.me3;
+if(contactImg&&IMG.covers.me2)contactImg.src=IMG.covers.me2;
+
+var dlBtn=document.getElementById('dl-btn');if(dlBtn)dlBtn.href=PDF_URI;
+
+function buildCards(filter){
+  var grid=document.getElementById('grid');grid.innerHTML='';
+  var list=filter==='all'?PROJECTS:PROJECTS.filter(function(p){return p.cat===filter;});
+  list.forEach(function(p,i){
+    var csrc=p.cover?IMG.covers[p.cover]||null:null;
+    var gc=(p.gallery&&IMG.galleries[p.gallery])?IMG.galleries[p.gallery].length:0;
+    var vks=VID_GALLERY[p.id]||[];
+    var vc=vks.filter(function(k){return VID[k];}).length;
+    var tot=gc+vc+(csrc?1:0);
+    var card=document.createElement('div');
+    var tierClass=p.tier===1?' t1':(p.tier===2?' t2':'');
+    card.className='card rv'+tierClass;
+    var ihtml=csrc?('<img class="cc" src="'+csrc+'" alt="'+p.title+'" loading="lazy"/>'):('<div class="cc" style="background:var(--navy-mid);display:flex;align-items:center;justify-content:center;color:var(--steel);font-family:var(--fm);font-size:.8rem">Photos coming soon</div>');
+    var thtml=p.tags.slice(0,4).map(function(t){return'<span class="ctag">'+t+'</span>';}).join('');
+    var mhtml=tot>1?'<span class="cm">'+tot+' items</span>':'';
+    card.innerHTML=ihtml+'<div class="cb"><p class="ct">'+p.type+'</p><h3 class="cti">'+p.title+'</h3><p class="co">'+p.org+'</p><p class="cd">'+p.desc+'</p><div class="ctags">'+thtml+'</div><div class="cf"><span class="cl">View Project &rarr;</span>'+mhtml+'</div></div>';
+    card.addEventListener('click',function(){openLB(p);});
+    card.style.transitionDelay=(i*.04)+'s';
+    grid.appendChild(card);
+  });
+  observeReveal();
+}
+
+document.getElementById('tabs').addEventListener('click',function(e){var btn=e.target.closest('.tab');if(!btn)return;document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');buildCards(btn.dataset.cat);});
+
+var lbItems=[],lbIdx=0;
+function openLB(p){var lb=document.getElementById('lb');document.getElementById('lb-type').textContent=p.type;document.getElementById('lb-title').textContent=p.title;document.getElementById('lb-desc').textContent=p.desc;var le=document.getElementById('lb-links');le.innerHTML=p.links&&p.links.length?p.links.map(function(l){return'<a class="lblink" href="'+l.url+'" target="_blank" rel="noopener">'+l.label+' &#x2197;</a>';}).join(''):'';lbItems=[];if(p.cover&&IMG.covers[p.cover])lbItems.push({src:IMG.covers[p.cover],type:'img'});if(p.gallery&&IMG.galleries[p.gallery])IMG.galleries[p.gallery].forEach(function(s){lbItems.push({src:s,type:'img'});});var vks=VID_GALLERY[p.id]||[];vks.forEach(function(k){if(VID[k])lbItems.push({src:VID[k],type:'vid'});});lbIdx=0;renderLB();lb.classList.add('on');document.body.style.overflow='hidden';history.pushState({lb:true},'');}
+function renderLB(){var item=lbItems[lbIdx];var img=document.getElementById('lb-img');var vid=document.getElementById('lb-vid');if(item&&item.type==='vid'){img.style.display='none';vid.src=item.src;vid.style.display='block';}else{try{vid.pause();}catch(e){}vid.style.display='none';img.src=item?item.src:'';img.style.display='block';}document.getElementById('lb-count').textContent=lbItems.length?(lbIdx+1)+' / '+lbItems.length:'';var tg=document.getElementById('lb-thumbs');tg.innerHTML=lbItems.map(function(it,i){var cls=i===lbIdx?' on':'';if(it.type==='vid')return'<div class="lbvth'+cls+'" onclick="lbGo('+i+')" title="Video">&#9654;</div>';return'<img class="lbth'+cls+'" src="'+it.src+'" onclick="lbGo('+i+')" alt="" loading="lazy"/>';}).join('');}
+function lbNav(d){if(!lbItems.length)return;lbIdx=(lbIdx+d+lbItems.length)%lbItems.length;renderLB();}
+function lbGo(i){lbIdx=i;renderLB();}
+function closeLB(){var lb=document.getElementById('lb');lb.classList.remove('on');document.body.style.overflow='';try{document.getElementById('lb-vid').pause();}catch(e){}}
+window.addEventListener('popstate',function(){if(document.getElementById('lb').classList.contains('on'))closeLB();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);});
+
+function observeReveal(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vi');obs.unobserve(e.target);}});},{threshold:.1});document.querySelectorAll('.rv:not(.vi)').forEach(function(el){obs.observe(el);});}
+observeReveal();
+
+/* ── NAV ACTIVE STATE: uses absolute offset traversal so it works inside position:relative main ── */
+(function(){
+  var secs=Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  var links=document.querySelectorAll('.nm a');
+  var ticking=false;
+  function absTop(el){var t=0;while(el){t+=el.offsetTop;el=el.offsetParent;}return t;}
+  function update(){
+    var pos=window.scrollY+180;
+    var current=secs[0];
+    for(var i=0;i<secs.length;i++){if(absTop(secs[i])<=pos)current=secs[i];}
+    links.forEach(function(l){l.classList.remove('on');});
+    var a=document.querySelector('.nm a[href="#'+current.id+'"]');
+    if(a)a.classList.add('on');
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){update();ticking=false;});ticking=true;}},{passive:true});
+  window.addEventListener('resize',function(){update();});
+  setTimeout(update,400);
+})();
+
+/* ── SUBTLE SCROLL PARALLAX ON PHOTOS (adds dimension, capped range, no layout impact) ── */
+(function(){
+  var targets=[
+    {el:document.getElementById('hero-img'),speed:.05},
+    {el:document.getElementById('about-img'),speed:.05},
+    {el:document.getElementById('about-img2'),speed:-.05},
+    {el:document.getElementById('contact-img'),speed:.04},
+  ].filter(function(t){return t.el;});
+  if(!targets.length)return;
+  var ticking=false;
+  function update(){
+    targets.forEach(function(t){
+      var rect=t.el.getBoundingClientRect();
+      var centerOffset=(rect.top+rect.height/2)-(window.innerHeight/2);
+      var shift=Math.max(-22,Math.min(22,centerOffset*t.speed*-1));
+      t.el.style.transform='translateY('+shift.toFixed(1)+'px)';
+    });
+  }
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){update();ticking=false;});ticking=true;}},{passive:true});
+  update();
+})();
+
+/* ── TESTIMONIAL CAROUSEL ── */
+var testiIdx=0;
+function renderTesti(){
+  var t=TESTIMONIALS[testiIdx];
+  var q=document.getElementById('t-quote'), s=document.getElementById('t-source');
+  if(!q||!s)return;
+  q.style.opacity=0;
+  setTimeout(function(){
+    q.textContent='\u201C'+t.quote+'\u201D';
+    s.textContent=t.source;
+    q.style.opacity=1;
+  },120);
+}
+function testiNav(d){testiIdx=(testiIdx+d+TESTIMONIALS.length)%TESTIMONIALS.length;renderTesti();}
+renderTesti();
+
+function sendMsg(){var n=document.getElementById('cn').value.trim();var e=document.getElementById('ce').value.trim();var s=document.getElementById('cs').value.trim();var m=document.getElementById('cm').value.trim();var st=document.getElementById('fs');if(!n||!e||!m){st.textContent='Please fill in name, email, and message.';st.style.display='block';return;}window.location.href='mailto:trinitykwl@gmail.com?subject='+encodeURIComponent(s||'Portfolio Enquiry')+'&body='+encodeURIComponent('Name: '+n+'\n\n'+m);st.textContent='Opening your mail client...';st.style.display='block';}
+
+buildCards('all');
+
+</script>
+</body>
+</html>
